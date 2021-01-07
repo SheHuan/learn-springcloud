@@ -1,34 +1,27 @@
 package com.sn.provider;
 
+import com.sn.IHelloService;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-public class HelloController {
+public class HelloController2 implements IHelloService {
     @Value("${server.port}")
     Integer port;
 
-    @GetMapping("/hello")
-    public String hello() {
+    @Override
+    public String api_hello() {
         System.out.println(System.currentTimeMillis());
         return "hello world" + "#" + port;
     }
 
-    /**
-     * @param ids 格式为1,2,3,4
-     * @return
-     */
-    @GetMapping("/data/{ids}")
-    public List<String> getDataByIds(@PathVariable String ids) {
+    @Override
+    public List<String> api_getDataByIds(String ids) {
         System.out.println(ids);
         String[] idArr = ids.split(",");
         ArrayList<String> data = new ArrayList<>();
@@ -38,14 +31,14 @@ public class HelloController {
         return data;
     }
 
-    @GetMapping("/hello2")
-    public String hello2(String name) {
+    @Override
+    public String api_hello2(String name) {
         System.out.println(System.currentTimeMillis());
         return name + "#" + port;
     }
 
-    @GetMapping("/hello3")
-    public String hello3(@RequestHeader String name) throws UnsupportedEncodingException {
+    @Override
+    public String api_hello3(String name) throws UnsupportedEncodingException {
         System.out.println(System.currentTimeMillis());
         return URLDecoder.decode(name, "utf-8") + "#" + port;
     }
