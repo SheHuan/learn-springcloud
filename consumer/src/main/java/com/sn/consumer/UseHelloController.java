@@ -38,7 +38,7 @@ public class UseHelloController {
         StringBuilder sb = new StringBuilder();
         sb.append(scheme).append("://")
                 .append(host).append(":")
-                .append(port).append("/")
+                .append(port)
                 .append("/hello");
 
         try {
@@ -73,7 +73,7 @@ public class UseHelloController {
         StringBuilder sb = new StringBuilder();
         sb.append(scheme).append("://")
                 .append(host).append(":")
-                .append(port).append("/")
+                .append(port)
                 .append("/hello");
 
         try {
@@ -106,7 +106,7 @@ public class UseHelloController {
         StringBuilder sb = new StringBuilder();
         sb.append(scheme).append("://")
                 .append(host).append(":")
-                .append(port).append("/")
+                .append(port)
                 .append("/hello");
 
         String result = restTemplate.getForObject(sb.toString(), String.class);
