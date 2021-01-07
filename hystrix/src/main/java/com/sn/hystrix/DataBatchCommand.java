@@ -6,7 +6,7 @@ import com.netflix.hystrix.HystrixCommandGroupKey;
 import java.util.List;
 
 /**
- * 执行批处理操作
+ * 批量发起请求
  */
 public class DataBatchCommand extends HystrixCommand<List<String>> {
     private List<Integer> ids;

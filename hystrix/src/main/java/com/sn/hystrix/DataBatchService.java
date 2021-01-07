@@ -22,6 +22,8 @@ public class DataBatchService {
         return Arrays.asList(objects);
     }
 
+    /********************************如下是通过注解的方式实现请求合并**************************************/
+
     /**
      * 使用Command相关类继承方式实现请求合并太复杂，使用@HystrixCollapser就简单了
      *

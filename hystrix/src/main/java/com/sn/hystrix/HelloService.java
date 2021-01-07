@@ -16,10 +16,9 @@ public class HelloService {
     RestTemplate restTemplate;
 
     /**
-     * @return
      * @HystrixCommand 的 fallbackMethod 属性表示目标微服务的方法调用失败时的临时容错处理替代法（服务降级）
      * <p>
-     * hello()方法如果有参数，则error()方法需要声明同样的参数
+     * hello()方法如果有参数，则error()方法需要声明同样的参数，但可以额外声明一个Throwable参数来接收异常信息
      */
     @HystrixCommand(fallbackMethod = "error")
     public String hello() {

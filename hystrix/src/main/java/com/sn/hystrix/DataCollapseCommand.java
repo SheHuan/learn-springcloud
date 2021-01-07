@@ -48,11 +48,11 @@ public class DataCollapseCommand extends HystrixCollapser<List<String>, String, 
      */
     @Override
     protected HystrixCommand<List<String>> createCommand(Collection<CollapsedRequest<String, Integer>> collapsedRequests) {
+        // 将多个请求的参数合并
         ArrayList<Integer> ids = new ArrayList<>(collapsedRequests.size());
         for (CollapsedRequest<String, Integer> collapsedRequest : collapsedRequests) {
             ids.add(collapsedRequest.getArgument());
         }
-        // 将合并好的请求数据统一发送
         return new DataBatchCommand(ids, dataBatchService);
     }
 
