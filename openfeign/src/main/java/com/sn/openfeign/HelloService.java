@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-// 指定服务名称
-@FeignClient("provider")
+// value 指定要调用的服务名称
+// fallback 指定Hystrix对应的服务降级处理类
+// fallbackFactory 和 fallback 的用途一样，定义一个即可
+@FeignClient(value = "provider", /*fallback = HelloServiceFallback.class, */ fallbackFactory = HelloServiceFallbackFactory.class)
 public interface HelloService extends IHelloService {
     // 指定目标服务的接口，方法名可任意指定
     @GetMapping("/hello")
