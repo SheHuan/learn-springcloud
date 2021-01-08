@@ -11,13 +11,13 @@ import java.util.List;
 
 // 指定服务名称
 @FeignClient("provider")
-public interface HelloService extends IHelloService{
+public interface HelloService extends IHelloService {
     // 指定目标服务的接口，方法名可任意指定
     @GetMapping("/hello")
     String hello();
 
     @GetMapping("/data/{ids}")
-    List<String> getDataByIds(@PathVariable String ids);
+    List<String> getDataByIds(@PathVariable("ids") String ids);
 
     // key-value格式传递数据时，需要添加@RequestParam
     @GetMapping("/hello2")
@@ -25,5 +25,5 @@ public interface HelloService extends IHelloService{
 
     // 使用@RequestHeader传递中文需要编码，接收服务则需要转码
     @GetMapping("/hello3")
-    String hello3(@RequestHeader String name);
+    String hello3(@RequestHeader("name") String name);
 }
