@@ -72,7 +72,7 @@ public class Resilience4jTest {
     @Test
     public void test3() {
         RateLimiterConfig config = RateLimiterConfig.custom()
-                // 限流后的等待时间
+                // 限流后，后续请求的等待时间
                 .timeoutDuration(Duration.ofSeconds(2))
                 // 每个时间段处理请求的个数
                 .limitForPeriod(2)
