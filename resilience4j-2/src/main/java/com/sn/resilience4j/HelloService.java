@@ -18,6 +18,7 @@ public class HelloService {
     }
 
     public String hello2() {
+        // 连续请求10次，测试服务端限流
         for (int i = 0; i < 10; i++) {
             restTemplate.getForObject("http://provider/hello5", String.class);
         }
