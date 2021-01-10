@@ -1,22 +1,22 @@
 # https://resilience4j.readme.io/docs/getting-started-3
 resilience4j:
   retry:
-    retry-aspect-order: 200 # \u8868\u793A\u91CD\u8BD5\u7684\u7684\u4F18\u5148\u7EA7\uFF0C\u8D8A\u5C0F\u4F18\u5148\u7EA7\u8D8A\u9AD8
+    retry-aspect-order: 200 # 表示重试的的优先级，越小优先级越高
     backends:
       retryA:
-        maxRetryAttempts: 5 # \u91CD\u8BD5\u6B21\u6570
-        waitDuration: 1000 # \u91CD\u8BD5\u7684\u95F4\u9694\u65F6\u95F4
-        retryExceptions: # \u53D1\u751F\u90A3\u4E9B\u5F02\u5E38\u8FDB\u884C\u91CD\u8BD5
+        maxRetryAttempts: 5 # 重试次数
+        waitDuration: 1000 # 重试的间隔时间
+        retryExceptions: # 发生那些异常进行重试
           - java.lang.RuntimeException
   circuitbreaker:
     instances:
       cbA:
-        failureRateThreshold: 50 # \u5931\u8D25\u8BF7\u6C42\u767E\u5206\u6BD4\uFF0C\u8D85\u8FC7\u8FD9\u4E2A\u6BD4\u4F8B\uFF0CCircuitBreaker\u5C31\u4F1A\u53D8\u6210OPEN\u72B6\u6001
-        permittedNumberOfCallsInHalfOpenState: 5 # \u5F53CircuitBreaker\u5904\u4E8EHALF_OPEN\u72B6\u6001\u7684\u65F6\u5019\uFF0C\u5141\u8BB8\u901A\u8FC7\u7684\u8BF7\u6C42\u6570\u91CF
-        waitDurationInOpenState: 5s # \u4ECEOPEN\u72B6\u6001\u53D8\u6210HALF_OPEN\u72B6\u6001\u9700\u8981\u7684\u7B49\u5F85\u65F6\u95F4
-        slidingWindowSize: 5 # \u6ED1\u52A8\u7A97\u53E3\u7C7B\u578B\uFF0CCOUNT_BASED\u4EE3\u8868\u662F\u57FA\u4E8E\u8BA1\u6570\u7684\u6ED1\u52A8\u7A97\u53E3\uFF0CTIME_BASED\u4EE3\u8868\u662F\u57FA\u4E8E\u8BA1\u65F6\u7684\u6ED1\u52A8\u7A97\u53E3
+        failureRateThreshold: 50 # 失败请求百分比，超过这个比例，CircuitBreaker就会变成OPEN状态
+        permittedNumberOfCallsInHalfOpenState: 5 # 当CircuitBreaker处于HALF_OPEN状态的时候，允许通过的请求数量
+        waitDurationInOpenState: 5s # 从OPEN状态变成HALF_OPEN状态需要的等待时间
+        slidingWindowSize: 5 # 滑动窗口类型，COUNT_BASED代表是基于计数的滑动窗口，TIME_BASED代表是基于计时的滑动窗口
         slidingWindowType: COUNT_BASED
-        minimumNumberOfCalls: 5 # \u6700\u5C0F\u8BF7\u6C42\u4E2A\u6570\u3002\u53EA\u6709\u5728\u6ED1\u52A8\u7A97\u53E3\u5185\uFF0C\u8BF7\u6C42\u4E2A\u6570\u8FBE\u5230\u8FD9\u4E2A\u4E2A\u6570\uFF0C\u624D\u4F1A\u89E6\u53D1CircuitBreaker\u5BF9\u4E8E\u662F\u5426\u6253\u5F00\u65AD\u8DEF\u5668\u7684\u5224\u65AD\u3002
+        minimumNumberOfCalls: 5 # 最小请求个数。只有在滑动窗口内，请求个数达到这个个数，才会触发CircuitBreaker对于是否打开断路器的判断。
         recordExceptions:
           - org.springframework.web.client.HttpServerErrorException
           - java.lang.RuntimeException
