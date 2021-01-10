@@ -66,4 +66,9 @@ public class HelloController {
         System.out.println(new Date());
         return "hello world" + "#" + port;
     }
+
+    @GetMapping("/login")
+    public String login(String username, String password) {
+        return "login" + "#" + port;
+    }
 }
