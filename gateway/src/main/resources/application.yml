@@ -1,0 +1,22 @@
+server:
+  port: 2022
+spring:
+  cloud:
+    gateway:
+      #      routes:
+      #        - id: my_route
+      #          uri: http://httpbin.org/get
+      #          predicates:
+      #            - Path=/get
+      discovery:
+        locator:
+          enabled: true # 注册到注册中心后，自动代理其它服务
+  application:
+    name: gateway
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1111/eureka
+logging:
+  level:
+    org.springframework.cloud.gateway: debug
