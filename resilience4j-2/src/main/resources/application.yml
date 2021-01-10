@@ -1,3 +1,4 @@
+# https://resilience4j.readme.io/docs/getting-started-3
 resilience4j:
   retry:
     retry-aspect-order: 200 # \u8868\u793A\u91CD\u8BD5\u7684\u7684\u4F18\u5148\u7EA7\uFF0C\u8D8A\u5C0F\u4F18\u5148\u7EA7\u8D8A\u9AD8
