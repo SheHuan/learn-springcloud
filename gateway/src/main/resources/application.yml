@@ -5,9 +5,24 @@ spring:
     gateway:
       #      routes:
       #        - id: my_route
+      #          # 要路由到的目标地址
       #          uri: http://httpbin.org/get
+      #          #支持负载均衡
+      #          uri: lb://provider
+      #          #配置过滤器
+      #          filters:
+      #            - AddRequestParameter=name,hello # 请求时添加额外的参数以及参数值
       #          predicates:
-      #            - Path=/get
+      #            # 对匹配如下路径的请求路由
+      #            - Path=/sn/**
+      #            # 对参数有name字段的请求路由
+      #                  - Query=name
+      #            # 下边三个表示对指定时间范围的请求路由
+      #            - After=2021-01-01T01:01:01+08:00[Asia/Shanghai]
+      #            - Before=2021-01-01T01:01:01+08:00[Asia/Shanghai]
+      #            - Between=2021-01-01T01:01:01+08:00[Asia/Shanghai],2021-05-01T01:01:01+08:00[Asia/Shanghai]
+      #            # 如下表示对指定请求方式的请求路由
+      #            - Method=GET
       discovery:
         locator:
           enabled: true # 注册到注册中心后，自动代理其它服务
