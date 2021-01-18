@@ -1,13 +1,13 @@
-package com.sn.zipkin;
+package com.sn.zipkin01;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ZipkinApplication {
+public class Zipkin01Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ZipkinApplication.class, args);
+		SpringApplication.run(Zipkin01Application.class, args);
 	}
 
 }

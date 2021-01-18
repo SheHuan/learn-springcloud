@@ -1,4 +1,4 @@
-package com.sn.zipkin;
+package com.sn.zipkin01;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
