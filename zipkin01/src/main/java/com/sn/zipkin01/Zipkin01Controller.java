@@ -1,4 +1,4 @@
-package com.sn.zipkin02;
+package com.sn.zipkin01;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -8,15 +8,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
-public class HelloController {
-    private static final Log log = LogFactory.getLog(HelloController.class);
+public class Zipkin01Controller {
+    private static final Log log = LogFactory.getLog(Zipkin01Controller.class);
 
     @Autowired
     private RestTemplate restTemplate;
 
     @RequestMapping("/hello")
-    public void hello() {
-        String result = restTemplate.getForObject("http://localhost:5301/hello?name={1}", String.class, "shehuan");
-        log.info("zipkin02: " + result);
+    public String hello() {
+        log.info("zipkin01");
+        String result = restTemplate.getForObject("http://localhost:5302/hello?name={1}", String.class, "2021");
+        return result;
     }
 }
